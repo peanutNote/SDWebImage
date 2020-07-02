@@ -240,7 +240,7 @@ typedef NSMutableDictionary<NSString *, id> SDCallbacksDictionary;
         delegateQueue = self.ownedSession.delegateQueue;
     }
     if (delegateQueue) {
-        NSAssert(delegateQueue.maxConcurrentOperationCount == 1, @"NSURLSession delegate queue should be a serial queue");
+        NSAssert(delegateQueue.maxConcurrentOperationCount <= 1, @"NSURLSession delegate queue should be a serial queue");
         [delegateQueue addOperationWithBlock:^{
             weakSelf.imageData = nil;
         }];
