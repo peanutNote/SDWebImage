@@ -31,37 +31,5 @@ Pod::Spec.new do |s|
     core.exclude_files = 'SDWebImage/UIImage+WebP.{h,m}', 'SDWebImage/SDWebImageWebPCoder.{h,m}'
     core.tvos.exclude_files = 'SDWebImage/MKAnnotationView+WebCache.*'
   end
-
-  s.subspec 'MapKit' do |mk|
-    mk.osx.deployment_target = '10.8'
-    mk.ios.deployment_target = '7.0'
-    mk.tvos.deployment_target = '9.0'
-    mk.source_files = 'SDWebImage/MKAnnotationView+WebCache.*'
-    mk.framework = 'MapKit'
-    mk.dependency 'SDWebImage/Core'
-  end
-
-  s.subspec 'GIF' do |gif|
-    gif.ios.deployment_target = '7.0'
-    gif.source_files = 'SDWebImage/FLAnimatedImage/*.{h,m}'
-    gif.dependency 'SDWebImage/Core'
-    gif.dependency 'FLAnimatedImage', '~> 1.0'
-    gif.xcconfig = {
-      'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/FLAnimatedImage/FLAnimatedImage'
-    }
-  end
-
-  s.subspec 'WebP' do |webp|
-    webp.source_files = 'SDWebImage/UIImage+WebP.{h,m}', 'SDWebImage/SDWebImageWebPCoder.{h,m}'
-    webp.xcconfig = { 
-      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) SD_WEBP=1',
-      'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/libwebp/src'
-    }
-    webp.watchos.xcconfig = {
-      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) SD_WEBP=1 WEBP_USE_INTRINSICS=1',
-      'USER_HEADER_SEARCH_PATHS' => '$(inherited) $(SRCROOT)/libwebp/src'
-    }
-    webp.dependency 'SDWebImage/Core'
-    webp.dependency 'libwebp'
-  end
+  
 end
